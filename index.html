@@ -2,8 +2,14 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>+- (PlusMinus by Gold Games)</title>
+    <!-- Viewport mit 'cover' für Notch-Support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- iOS Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2c3e50">
+    <title>+- (PlusMinus by GoldGames)</title>
     <style>
         :root {
             --bg-color: #2c3e50;
@@ -15,18 +21,47 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: radial-gradient(circle at center, var(--bg-accent), var(--bg-color));
-            color: white;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: radial-gradient(circle at center, var(--bg-accent), var(--bg-color));
+    color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    /* WICHTIG: 100dvh verhindert Scrollprobleme auf Mobile */
+    height: 100vh; 
+    height: 100dvh; 
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    
+    /* WICHTIG: Platz für die Notch und den Home-Balken schaffen */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    box-sizing: border-box; /* Damit Padding nicht die Höhe sprengt */
+}
 
+/* Den Top-Bar etwas anpassen, damit er nicht an der Notch klebt */
+#top-bar {
+    height: 50px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 15px;
+    background: rgba(0,0,0,0.3); 
+    font-size: 0.9rem;
+    /* Extra Abstand oben, falls das Padding im Body nicht reicht */
+    margin-top: 5px; 
+}
+
+/* Controls unten etwas anheben wegen dem Home-Balken */
+#controls { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    padding: 15px;
+    /* Extra Abstand zum unteren Rand */
+    margin-bottom: 10px; 
+}
         /* --- HEADER --- */
         #top-bar {
             height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px;
